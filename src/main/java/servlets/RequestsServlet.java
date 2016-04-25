@@ -23,10 +23,10 @@ public class RequestsServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
 
-        Map<String, Object> pageVariables = createPageVariablesMap(request);
-        pageVariables.put("message", "");
+        Map<String, Object> pageVariables = new HashMap<>();//createPageVariablesMap(request);
 
-        response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
+        pageVariables.put("value", request.getParameter("key")==null?"":request.getParameter("key"));
+        response.getWriter().println(request.getParameter("key")==null?"":request.getParameter("key"));
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
